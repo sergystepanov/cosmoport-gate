@@ -1,14 +1,62 @@
-.container {
-  position: absolute;
-  top: 30%;
-  left: 10px;
+body {
+	/* The base is 16px */
+	font-family: 'Europe', Verdana, Arial, sans-serif;
+	font-size: 100%;
+    line-height: 1.125em;
+	letter-spacing: 1px;
+
+	background-color: black;
+	color: #00cbfe;
+	padding: 2.175em;
+
+	/* The first background image */
+    background: url('../../images/background.jpg') no-repeat center fixed;
+    background-size: cover;
+}
+
+.block, .middleBlock {
+  border: 1px solid #00cbfe;
+}
+
+.top {
+  margin-bottom: 3em;
+}
+
+.middleBlock {
+  margin-top: 2em;
+  padding: 1em;
+}
+
+.bottomBlock {
+  margin-top: 2em;
+}
+
+.label {
+
+  background-color: #00cbfe;
+}
+
+.label div {
   text-align: center;
+  padding-top: 1em;
+    /*line-height: 3.1em;*/
+    text-transform: uppercase;
+    color: white;
+
 }
 
-.container h2 {
-  font-size: 5rem;
+.number {
+  position: relative;
 }
 
-.container a {
-  font-size: 1.4rem;
+.number div {
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    margin: 0;
+  padding: 0;
+  font-size: 10vw;
+  text-align: center;
 }

@@ -8,14 +8,23 @@ import { dependencies as externals } from './app/package.json';
 
 export default validate({
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      loaders: ['babel-loader'],
-      exclude: /node_modules/
-    }, {
-      test: /\.json$/,
-      loader: 'json-loader'
-    }]
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        loaders: ['babel-loader'],
+        exclude: /node_modules/
+      }, {
+        test: /\.json$/,
+        loader: 'json-loader'
+      }, {
+        test: /\.(?:png|jpg|svg)$/,
+        loader: 'url-loader',
+        query: {
+          // Inline images smaller than 10kb as data URIs
+          limit: 10000
+        }
+      }
+    ]
   },
 
   output: {
@@ -30,8 +39,19 @@ export default validate({
    * Determine the array of extensions that should be used to resolve modules.
    */
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json'],
-    packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
+    extensions: [
+      '', '.js', '.jsx', '.json'
+    ],
+    packageMains: [
+      'webpack',
+      'browser',
+      'web',
+      'browserify',
+      [
+        'jam', 'main'
+      ],
+      'main'
+    ]
   },
 
   plugins: [],
