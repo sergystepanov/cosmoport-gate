@@ -30,13 +30,14 @@ body {
   height: 6vh;
 }
 
-.block, .middleBlock {
+.block, .middleBlock, .property_block, .next_block {
   border: 1px solid #00cbfe;
   background-color:rgba(0, 0, 0, .6);
 }
 
-.block {
-  margin-bottom: 5px !important;
+.next_block {
+  padding: 1em;
+  margin-top: .7em;
 }
 
 .top {
@@ -54,7 +55,7 @@ body {
 
 .label {
 
-  background-color: #00cbfe;
+  background-color: #00ccff;
 }
 
 .label div {
@@ -68,6 +69,7 @@ body {
 
 .number {
   position: relative;
+  /*animation: blink 6s infinite;*/
 }
 
 .number div {
@@ -82,68 +84,24 @@ body {
   text-align: center;
 }
 
-
-
-/*#time, #date {
-  flex: 1;
+.property_block div {
+  display: inline-block;
+  padding: 1em;
 }
 
-#time {
-  position: relative;
+.property_block {
+  height: 3em;
 }
 
-#time * {
-  position: absolute;
+@keyframes blink {
+    0%   { border-color: #00cbfe; }
+    50%  { border-color: red;}
+    100% { border-color: #00cbfe; }
 }
 
-.hex-icon, .hex-icon-calendar {
-  left: 1.6em;
-    width: 36px;
-    height: 36px;
-    margin: 0;
-    top: .8em;
-    z-index: 22;
+.event_property__title {
+  background-color: #00ccff;
+  color: white;
+  text-transform: uppercase;
+  min-width: 8em;
 }
-
-.hex-icon-calendar {
-  position: absolute;
-    left: 4.5em;
-}
-
-.clock, #month-day, #month-name, #year {
-  display: block;
-  font-size: 2.5em;
-  text-align: center;
-  line-height: 1.5em;
-  top: 0;
-    left: 2.5em;
-}
-
-#month-day, #month-name, #year {
-  position: absolute;
-}
-
-#month-day {
-  left: 3.7em;
-}
-
-#month-name {
-  left: 6.5em;
-}
-
-#year {
-  left: 9.8em;
-}
-
-#date {
-  padding-left: 3em;
-  position: relative;
-}
-
-#date svg {
-  position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}*/
