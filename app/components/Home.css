@@ -2,20 +2,41 @@ body {
 	/* The base is 16px */
 	font-family: 'Europe', Verdana, Arial, sans-serif;
 	font-size: 100%;
-    line-height: 1.125em;
+  line-height: 1.125em;
 	letter-spacing: 1px;
 
 	background-color: black;
 	color: #00cbfe;
-	padding: 2.175em;
+	padding: 2em;
 
 	/* The first background image */
     background: url('../../images/background.jpg') no-repeat center fixed;
     background-size: cover;
 }
 
+/* Header */
+.header {
+  height: 3em;
+  display: flex;
+  margin-bottom: 2em;
+}
+
+.logo {
+  /* Adds space after */
+  flex: 1;
+}
+
+.logo img {
+  height: 6vh;
+}
+
 .block, .middleBlock {
   border: 1px solid #00cbfe;
+  background-color:rgba(0, 0, 0, .6);
+}
+
+.block {
+  margin-bottom: 5px !important;
 }
 
 .top {
@@ -60,3 +81,69 @@ body {
   font-size: 10vw;
   text-align: center;
 }
+
+
+
+/*#time, #date {
+  flex: 1;
+}
+
+#time {
+  position: relative;
+}
+
+#time * {
+  position: absolute;
+}
+
+.hex-icon, .hex-icon-calendar {
+  left: 1.6em;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    top: .8em;
+    z-index: 22;
+}
+
+.hex-icon-calendar {
+  position: absolute;
+    left: 4.5em;
+}
+
+.clock, #month-day, #month-name, #year {
+  display: block;
+  font-size: 2.5em;
+  text-align: center;
+  line-height: 1.5em;
+  top: 0;
+    left: 2.5em;
+}
+
+#month-day, #month-name, #year {
+  position: absolute;
+}
+
+#month-day {
+  left: 3.7em;
+}
+
+#month-name {
+  left: 6.5em;
+}
+
+#year {
+  left: 9.8em;
+}
+
+#date {
+  padding-left: 3em;
+  position: relative;
+}
+
+#date svg {
+  position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}*/

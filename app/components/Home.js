@@ -1,13 +1,20 @@
 // @flow
 import React, {Component} from 'react';
 import {Tile, Box} from 're-bulma';
+
 import styles from './Home.css';
+import DateTimeDisplay from './DateTimeDisplay/DateTimeDisplay';
 
 export default class Home extends Component {
   render() {
     return (
       <div>
-        <div className={styles.top}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div className={styles.header}>
+          <div className={styles.logo}>
+            <img alt="" src="../resources/logo.png"/>
+          </div>
+          <DateTimeDisplay/>
+        </div>
 
         <Tile context="isAncestor">
           <Tile context="isParent" size="is2">
@@ -36,14 +43,14 @@ export default class Home extends Component {
                 <div>9</div>
               </Tile>
             </Tile>
-            <Tile context="isParent" isVertical size="is7">
-              <Tile context="isChild" className={styles.block}>
+            <Tile context="isParent" isVertical size="is7" className={styles.block_holder}>
+              <Tile context="isChild" className={`${styles.block} ${styles.inner_block}`}>
                 <p className="title">5</p>
               </Tile>
-              <Tile context="isChild" className={styles.block}>
+              <Tile context="isChild" className={`${styles.block} ${styles.inner_block}`}>
                 <p className="title">6</p>
               </Tile>
-              <Tile context="isChild" className={styles.block}>
+              <Tile context="isChild" className={`${styles.block} ${styles.inner_block}`}>
                 <p className="title">7</p>
               </Tile>
             </Tile>

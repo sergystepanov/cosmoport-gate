@@ -1,2 +1,10 @@
 @import "../resources/fonts/europe-font.css";
-/*@import "~bulma/css/bulma.css"*/
+
+/* Override bulma */
+.__re-bulma_tile.__re-bulma_is-parent {
+  padding: 5px 10px !important;
+}
+.__re-bulma_tile.__re-bulma_is-vertical>.__re-bulma_tile.__re-bulma_is-child:not(:last-child),
+.__re-bulma_tile.__re-bulma_is-ancestor:not(:last-child) {
+  margin-bottom: 10px !important;
+}
