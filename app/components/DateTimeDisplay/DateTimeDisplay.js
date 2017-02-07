@@ -8,42 +8,7 @@ export default class DateTimeDisplay extends Component {
 
     this.state = {
       showColon: true,
-      date: new Date(),
-      locale: 'en',
-      locales: {
-        en: {
-          monthNames: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec'
-          ]
-        },
-        ru: {
-          monthNames: [
-            'Янв',
-            'Фев',
-            'Мар',
-            'Апр',
-            'Май',
-            'Июн',
-            'Июл',
-            'Авг',
-            'Сеп',
-            'Окт',
-            'Нов',
-            'Дек'
-          ]
-        }
-      }
+      date: new Date()
     };
   }
 
@@ -85,12 +50,12 @@ export default class DateTimeDisplay extends Component {
   renderClock() {
     return (
       <div className={styles.clock_value}>
-        {this
+        <span>{this
           .state
           .date
-          .getHours()}
-        <span style={this.showHide(this.state.showColon)}>:</span>
-        {this.format00(this.state.date.getMinutes())}
+          .getHours()}</span>
+        <span className={styles.transition} style={this.showHide(this.state.showColon)}>:</span>
+        <span>{this.format00(this.state.date.getMinutes())}</span>
       </div>
     );
   }
@@ -103,7 +68,7 @@ export default class DateTimeDisplay extends Component {
   }
 
   renderMonthName() {
-    return this.state.locales[this.state.locale].monthNames[
+    return this.props.locale.monthNames[
       this
         .state
         .date

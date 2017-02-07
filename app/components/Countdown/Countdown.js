@@ -22,7 +22,7 @@ export default class Countdown extends Component {
 
   tick() {
     this.setState({
-      minutes: this.state.minutes < 0
+      minutes: this.state.minutes < 1
         ? 0
         : (this.state.minutes - 1)
     });

@@ -36,3 +36,6 @@
     left: 60%;
 }
 
+.transition {
+  /*transition: opacity .15s ease-in-out;*/
+}

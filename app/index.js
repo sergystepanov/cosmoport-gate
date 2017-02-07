@@ -6,12 +6,12 @@ import { render } from 'react-dom';
 // import routes from './routes';
 // import configureStore from './store/configureStore';
 import './app.global.css';
-import HomePage from './containers/HomePage';
+import MainPage from './containers/MainPage';
 
 // const store = configureStore();
 // const history = syncHistoryWithStore(hashHistory, store);
 
 render(
-  <HomePage />,
+  <MainPage />,
   document.getElementById('root')
 );
