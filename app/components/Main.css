@@ -21,9 +21,9 @@ body {
   margin-bottom: 2em !important;
 }
 
-.logo {
-  /* Adds space after */
-  /*flex: 1;*/
+ .selectible:hover {
+   cursor: pointer;
+   background-color: #ef5350;
 }
 
 .datetime {
