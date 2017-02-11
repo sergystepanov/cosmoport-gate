@@ -4,7 +4,7 @@
 
 import path from 'path';
 import validate from 'webpack-validator';
-import { dependencies as externals } from './app/package.json';
+import {dependencies as externals} from './app/package.json';
 
 export default validate({
   module: {
@@ -21,7 +21,7 @@ export default validate({
         loader: 'url-loader',
         query: {
           // Inline images smaller than 10kb as data URIs
-          limit: 10000
+          limit: 50000
         }
       }
     ]

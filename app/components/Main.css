@@ -10,8 +10,8 @@ body {
 	padding: 2em;
 
 	/* The first background image */
-    background: url('../../images/background.jpg') no-repeat center fixed;
-    background-size: cover;
+  background: url('../../assets/background_v0.jpg') no-repeat center fixed;
+  background-size: cover;
 }
 
 /* Header */

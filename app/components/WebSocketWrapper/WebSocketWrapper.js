@@ -1,6 +1,6 @@
 export default class WebSocketWrapper {
   createMethod(method, options, stateCallback) {
-    var that = this;
+    const that = this;
     this[method] = function () {
       if (stateCallback && stateCallback.apply) {
         stateCallback(method);
@@ -13,7 +13,7 @@ export default class WebSocketWrapper {
   }
 
   constructor(options) {
-    var ws,
+    let ws,
       events = [
         'onopen', 'onmessage', 'onclose', 'onerror'
       ],
@@ -63,7 +63,7 @@ export default class WebSocketWrapper {
     };
 
     this.init = function () {
-      var cb = this
+      const cb = this
         .onEventTrigger
         .bind(this);
       ws = new WebSocket(options.url);
@@ -86,8 +86,7 @@ export default class WebSocketWrapper {
           .push(arguments);
       } else {
         ws
-          .send
-          .apply(ws, arguments);
+          .send(...arguments);
       }
     };
 

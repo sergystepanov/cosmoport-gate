@@ -6,6 +6,13 @@ import EventPropertyTitle from './EventPropertyTitle';
 import styles from './EventPropertyRowTile.css';
 
 export default class EventPropertyRowTile extends Component {
+  constructor(props) {
+    super(props);
+
+    this.iconsContext = require.context("../../../assets", false, /^\.\/icon_.*v0\.png$/);
+
+    console.log(this.iconsContext.keys());
+  }
 
   renderTypeName(eventType, eventTypeSubName) {
     return (
@@ -25,30 +32,26 @@ export default class EventPropertyRowTile extends Component {
 
     if (eventId === 1) {
       iconName = 'radioplate';
-    } else {
-      if (eventId === 2) {
-        iconName = 'spaceman';
-      } else {
-        if (eventId === 3) {
-          iconName = 'solar';
-        }
-      }
+    } else if (eventId === 2) {
+      iconName = 'spaceman';
+    } else if (eventId === 3) {
+      iconName = 'solar';
     }
 
     if (eventId !== 0 && status === 'inactive') {
       iconName += '_dis';
     }
 
-    const src = `../resources/icon/icon_${iconName}.svg`;
+    const src = this.iconsContext(`./icon_${iconName}_v0.png`);
 
-    return <img className="type_icon" src={src}/>;
+    return <img className="type_icon" src={src} />;
   }
 
   render() {
     return (
       <Tile context="isChild" className={styles.property_block}>
         <Tile size="is4">
-          <EventPropertyTitle value={this.props.title}/>
+          <EventPropertyTitle value={this.props.title} />
         </Tile>
 
         <Tile className={styles.value_container}>

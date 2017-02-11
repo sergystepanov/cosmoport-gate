@@ -6,14 +6,14 @@ import {Router, Route, hashHistory} from 'react-router';
 // './routes'; import configureStore from './store/configureStore';
 import './app.global.css';
 import MainPage from './components/Main';
-import FirstScreen from './components/FirstScreen';
+import FirstScreenContainer from './containers/FirstScreenContainer';
 
 // const store = configureStore(); const history =
 // syncHistoryWithStore(hashHistory, store);
 
 render((
   <Router history={hashHistory}>
-    <Route path="/" component={FirstScreen}/>
-    <Route path="/app/:gate_id" component={MainPage}/>
+    <Route path="/" component={FirstScreenContainer} />
+    <Route path="/app/:gate_id" component={MainPage} />
   </Router>
 ), document.getElementById('root'));

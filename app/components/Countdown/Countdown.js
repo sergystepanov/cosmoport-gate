@@ -6,7 +6,6 @@ export default class Countdown extends Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props);
     this.state = {
       minutes: this.props.minutes
     };
