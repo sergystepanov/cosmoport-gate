@@ -3,6 +3,14 @@ import React, {Component} from 'react';
 import styles from './DateTimeDisplay.css';
 
 export default class DateTimeDisplay extends Component {
+  static propTypes = {
+    locale: React.PropTypes.object
+  };
+
+  static defaultProps = {
+    locale: {}
+  };
+
   constructor(props) {
     super(props);
 
@@ -33,18 +41,18 @@ export default class DateTimeDisplay extends Component {
       : value;
   }
 
-  renderColon() {
-    return this.state.showColon
-      ? 'block'
-      : 'none';
-  }
-
   showHide(value) {
     return {
       opacity: value
         ? '.999'
         : '0'
     };
+  }
+
+  renderColon() {
+    return this.state.showColon
+      ? 'block'
+      : 'none';
   }
 
   renderClock() {
@@ -68,7 +76,7 @@ export default class DateTimeDisplay extends Component {
   }
 
   renderMonthName() {
-    return this.props.locale.monthNames[
+    return this.props.locale.ui_months_names.values[
       this
         .state
         .date
@@ -92,7 +100,6 @@ export default class DateTimeDisplay extends Component {
             className={styles.time_block}
             version="1.1"
             id="time"
-
             viewBox="0 0 609.7 133.6">
             <path
               id="Filling"
@@ -206,7 +213,6 @@ export default class DateTimeDisplay extends Component {
             id="date"
             x="0"
             y="0"
-
             viewBox="0 0 611.8 72.3">
             <path
               id="Filling_copy"
@@ -216,8 +222,14 @@ export default class DateTimeDisplay extends Component {
               id="Border_right_copy"
               className={styles.st1}
               d="M591,71.3H22.1l-21-34.5L22.1,1H591l19.7,34.5L591,71.3z"/>
-            <path id="_2nd_right_arrow" className={styles.st1} d="M377.5,1l19.7,35.8L375,71.3"/>
-            <path id="_1st_right_arrow" className={styles.st1} d="M214.6,1l19.7,35.8l-21,34.5"/>
+            <path
+              id="_2nd_right_arrow"
+              className={styles.st1}
+              d="M377.5,1l19.7,35.8L375,71.3"/>
+            <path
+              id="_1st_right_arrow"
+              className={styles.st1}
+              d="M214.6,1l19.7,35.8l-21,34.5"/>
             <path
               id="Hex_left_copy"
               className={styles.st2}

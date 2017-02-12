@@ -9,9 +9,8 @@ export default class EventPropertyRowTile extends Component {
   constructor(props) {
     super(props);
 
+    console.log(props);
     this.iconsContext = require.context("../../../assets", false, /^\.\/icon_.*v0\.png$/);
-
-    console.log(this.iconsContext.keys());
   }
 
   renderTypeName(eventType, eventTypeSubName) {

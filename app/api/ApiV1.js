@@ -4,7 +4,7 @@ export default class ApiV1 {
   }
 
   request(uri, onSuccess, onFailure) {
-    fetch(this.address + uri, { mode: 'cors' }).then((response) => {
+    fetch(this.address + uri, {mode: 'cors'}).then((response) => {
       if (response.ok) {
         return response.json();
       }
@@ -24,6 +24,10 @@ export default class ApiV1 {
 
   fetchReferenceData(onSuccess, onFailure) {
     this.request('/t_events/reference_data', onSuccess, onFailure);
+  }
+
+  fetchTranslationData(onSuccess, onFailure) {
+    this.request('/translations', onSuccess, onFailure);
   }
 
   fetchTime(onSuccess, onFailure) {
