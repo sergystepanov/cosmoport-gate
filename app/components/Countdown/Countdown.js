@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import styles from './Countdown.css';
+import Trapeze from '../Decoration/Trapeze';
 
 export default class Countdown extends Component {
   constructor(props) {
@@ -31,12 +31,18 @@ export default class Countdown extends Component {
     const h = Math.trunc(minutes / 60);
     const m = minutes % 60;
 
-    return `${h}:${(m < 10 ? '0' : '') + m}`;
+    return `${h}:${ (m < 10
+      ? '0'
+      : '') + m}`;
   }
 
   render() {
     return (
-      <div className={styles.etd}>{this.renderMinutes(this.state.minutes)}</div>
+      <div className="flight__time-number">
+        <Trapeze/>
+        <div className="flight__time-content">{this.renderMinutes(this.state.minutes)}</div>
+        <Trapeze position="_right"/>
+      </div>
     );
   }
 }
