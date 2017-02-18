@@ -25,31 +25,24 @@ app.on('window-all-closed', () => {
 );
 
 const installExtensions = async() => {
-  // if (process.env.NODE_ENV === 'development') {
-  const installer = require('electron-devtools-installer'); // eslint-disable-line global-require
+  if (process.env.NODE_ENV === 'development') {
+    const installer = require('electron-devtools-installer'); // eslint-disable-line global-require
 
-  const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
+    const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
 
-  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+    const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
 
-  // TODO: Use async interation statement.       Waiting on
-  // https://github.com/tc39/proposal-async-iteration       Promises will fail
-  // silently, which isn't what we want in development
-  return Promise.all(extensions.map(name => installer.default(installer[name], forceDownload))).catch(console.log);
-  // }
+    // TODO: Use async interation statement.       Waiting on
+    // https://github.com/tc39/proposal-async-iteration       Promises will fail
+    // silently, which isn't what we want in development
+    return Promise.all(extensions.map(name => installer.default(installer[name], forceDownload))).catch(console.log);
+  }
 };
 
 app.on('ready', async() => {
   await installExtensions();
 
-  mainWindow = new BrowserWindow({
-    show: false,
-    width: 1024,
-    height: 728,
-    webPreferences: {
-      zoomFactor: 1.0
-    }
-  });
+  mainWindow = new BrowserWindow({show: false, width: 1024, height: 728});
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
@@ -64,8 +57,6 @@ app.on('ready', async() => {
     mainWindow = null;
   });
 
-  // if (process.env.NODE_ENV === 'development') {
-  mainWindow.openDevTools();
   mainWindow
     .webContents
     .on('context-menu', (e, props) => {
@@ -73,11 +64,6 @@ app.on('ready', async() => {
 
       Menu.buildFromTemplate([
         {
-          label: 'Inspect element',
-          click() {
-            mainWindow.inspectElement(x, y);
-          }
-        }, {
           label: '50% zoom',
           click() {
             mainWindow
@@ -93,9 +79,39 @@ app.on('ready', async() => {
           }
         }
       ]).popup(mainWindow);
-
     });
-  // }
+
+  if (process.env.NODE_ENV === 'development') {
+    mainWindow.openDevTools();
+    mainWindow
+      .webContents
+      .on('context-menu', (e, props) => {
+        const {x, y} = props;
+
+        Menu.buildFromTemplate([
+          {
+            label: 'Inspect element',
+            click() {
+              mainWindow.inspectElement(x, y);
+            }
+          }, {
+            label: '50% zoom',
+            click() {
+              mainWindow
+                .webContents
+                .setZoomLevel(-2);
+            }
+          }, {
+            label: '100% zoom',
+            click() {
+              mainWindow
+                .webContents
+                .setZoomLevel(0);
+            }
+          }
+        ]).popup(mainWindow);
+      });
+  }
 
   if (process.platform === 'darwin') {
     template = [

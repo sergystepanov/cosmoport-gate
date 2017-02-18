@@ -6,8 +6,10 @@ import Locale from '../../class/Locale';
 
 export default class TableRow extends Component {
 
-  getLocaleProp(prop) {
-    return Locale.getLocaleProp(this.props.locale, prop);
+  getLocaleProp(prop, uppercase) {
+    const property = Locale.getLocaleProp(this.props.locale, prop);
+
+    return uppercase ? property.toUpperCase() : property;
   }
 
   mapStatus(statusId) {
@@ -57,7 +59,7 @@ export default class TableRow extends Component {
 
     for (const type of values.types) {
       if (val === type.id) {
-        result = `${this.getLocaleProp(type.i18nEventTypeName)}:`;
+        result = `${this.getLocaleProp(type.i18nEventTypeName, true)}:`;
         break;
       }
     }
@@ -70,7 +72,7 @@ export default class TableRow extends Component {
 
     for (const type of values.types) {
       if (val === type.id) {
-        result = `${this.getLocaleProp(type.i18nEventTypeSubname)}`;
+        result = `${this.getLocaleProp(type.i18nEventTypeSubname, true)}`;
         break;
       }
     }
@@ -83,7 +85,7 @@ export default class TableRow extends Component {
 
     for (const dest of values.destinations) {
       if (val === dest.id) {
-        result = this.getLocaleProp(dest.i18nEventDestinationName);
+        result = this.getLocaleProp(dest.i18nEventDestinationName, true);
         break;
       }
     }
@@ -107,7 +109,7 @@ export default class TableRow extends Component {
 
     for (const status of values.statuses) {
       if (val == status.id) {
-        result = this.getLocaleProp(status.i18nStatus);
+        result = this.getLocaleProp(status.i18nStatus, true);
         break;
       }
     }
