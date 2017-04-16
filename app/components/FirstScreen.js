@@ -1,17 +1,15 @@
 // @flow
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
-import Api from '../api/ApiV1';
+import Api from '../../lib/core-api-client/ApiV1';
+
+const API = new Api();
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
 
-    this.api = new Api();
-    this.state = {
-      gate: -1,
-      gates: []
-    };
+    this.state = { gate: -1, gates: [] };
   }
 
   componentDidMount() {
@@ -21,7 +19,7 @@ export default class Main extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({gate: e.target.value});
+    this.setState({ gate: e.target.value });
     this
       .props
       .router

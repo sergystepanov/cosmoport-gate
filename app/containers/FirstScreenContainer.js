@@ -2,7 +2,6 @@
 import React, {Component} from 'react';
 
 import GateSelect from '../components/GateSelect/GateSelect';
-// import Api from '../api/ApiV1';
 
 export default class FirstScreenContainer extends Component {
   constructor(props) {
