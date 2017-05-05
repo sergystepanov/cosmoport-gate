@@ -1,7 +1,19 @@
-// @flow
-import React, {Component} from 'react';
+import React, { Component, PropTypes } from 'react';
 
 export default class CalendarDate extends Component {
+  static propTypes = {
+    locale: PropTypes.shape({
+      ui_months_names: PropTypes.shape({
+        id: PropTypes.number,
+        values: PropTypes.arrayOf(PropTypes.string)
+      })
+    })
+  }
+
+  static defaultProps = {
+    locale: {}
+  }
+
   constructor(props) {
     super(props);
 
@@ -19,7 +31,7 @@ export default class CalendarDate extends Component {
   }
 
   tick() {
-    this.setState({date: new Date()});
+    this.setState({ date: new Date() });
   }
 
   renderMonthDay() {
@@ -31,16 +43,8 @@ export default class CalendarDate extends Component {
 
   renderMonthName() {
     return this.props.locale.ui_months_names !== undefined
-      ? this.props.locale.ui_months_names.values[
-        this
-          .state
-          .date
-          .getMonth()
-      ]
-      : this
-        .state
-        .date
-        .getMonth();
+      ? this.props.locale.ui_months_names.values[this.state.date.getMonth()]
+      : this.state.date.getMonth();
   }
 
   renderYear() {
@@ -52,16 +56,16 @@ export default class CalendarDate extends Component {
 
   render() {
     return (
-      <div className="date">
+      <div className="date" >
         <div className="date__img">
-          <i className="i-calendar date__icon"></i>
+          <i className="i-calendar date__icon" />
         </div>
         <div className="date__body">
           <div className="date__number">{this.renderMonthDay()}</div>
           <div className="date__number">{this.renderMonthName()}</div>
           <div className="date__number">{this.renderYear()}</div>
         </div>
-      </div>
+      </div >
     );
   }
 }

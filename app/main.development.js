@@ -1,8 +1,14 @@
-import {app, BrowserWindow, Menu, shell} from 'electron';
+import { app, BrowserWindow, Menu, shell } from 'electron';
 
 let menu;
 let template;
 let mainWindow = null;
+
+const fs = require('fs');
+const path = require('path');
+const ini = require('ini');
+
+const config = ini.parse(fs.readFileSync(path.join(__dirname, '..', 'config', 'config.ini'), 'utf-8'));
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support'); // eslint-disable-line
@@ -13,18 +19,15 @@ if (process.env.NODE_ENV === 'development') {
   require('electron-debug')(); // eslint-disable-line global-require
   const path = require('path'); // eslint-disable-line
   const p = path.join(__dirname, '..', 'app', 'node_modules'); // eslint-disable-line
-  require('module')
-    .globalPaths
-    .push(p); // eslint-disable-line
+  require('module').globalPaths.push(p); // eslint-disable-line
 }
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin')
     app.quit();
-  }
-);
+});
 
-const installExtensions = async() => {
+const installExtensions = async () => {
   if (process.env.NODE_ENV === 'development') {
     const installer = require('electron-devtools-installer'); // eslint-disable-line global-require
 
@@ -39,19 +42,19 @@ const installExtensions = async() => {
   }
 };
 
-app.on('ready', async() => {
+app.on('ready', async () => {
   await installExtensions();
 
-  mainWindow = new BrowserWindow({show: false, width: 1024, height: 728});
+  mainWindow = new BrowserWindow({ show: false, width: 1024, height: 728 });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
-  mainWindow
-    .webContents
-    .on('did-finish-load', () => {
-      mainWindow.show();
-      mainWindow.focus();
-    });
+  mainWindow.webContents.on('did-finish-load', () => {
+    mainWindow.webContents.send('config', config);
+
+    mainWindow.show();
+    mainWindow.focus();
+  });
 
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -60,7 +63,7 @@ app.on('ready', async() => {
   mainWindow
     .webContents
     .on('context-menu', (e, props) => {
-      const {x, y} = props;
+      const { x, y } = props;
 
       Menu.buildFromTemplate([
         {
@@ -86,7 +89,7 @@ app.on('ready', async() => {
     mainWindow
       .webContents
       .on('context-menu', (e, props) => {
-        const {x, y} = props;
+        const { x, y } = props;
 
         Menu.buildFromTemplate([
           {

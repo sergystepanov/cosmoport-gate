@@ -1,5 +1,5 @@
 // @flow
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import GateSelect from '../components/GateSelect/GateSelect';
 
@@ -13,16 +13,13 @@ export default class FirstScreenContainer extends Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   fetchGates = () => Array.from(Array(10).keys())
 
   handleGateSelect = (num) => {
-    this.setState({gateNum: num});
-    this
-      .props
-      .router
-      .push(`/app/${num}`);
+    this.setState({ gateNum: num });
+    this.props.router.push(`/app/${num}`);
   }
 
   render() {
