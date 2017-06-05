@@ -1,5 +1,4 @@
-// @flow
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import styles from './GateSelect.css';
 
@@ -7,13 +6,13 @@ export default class GateSelect extends Component {
   static propTypes = {
     data: React
       .PropTypes
-      .arrayOf(React.PropTypes.number),
+      .arrayOf(React.PropTypes.object),
     onGateSelect: React.PropTypes.func
   };
 
   static defaultProps = {
     data: [],
-    onGateSelect: () => {}
+    onGateSelect: () => { }
   };
 
   handleChange = (e) => {
@@ -22,21 +21,23 @@ export default class GateSelect extends Component {
       .onGateSelect(e.target.value);
   }
 
-  renderOption = (id) => <option key={id} value={id}>Gate {id}</option>
-
   render() {
+    const gateOptions = this.props.data.map(gate_ =>
+      <option key={gate_.id} value={gate_.id}>
+        {gate_.id} - {gate_.number} {gate_.gateName}
+      </option>
+    );
+
     return (
       <div>
         <div>Please select the gate number:</div>
         <select
           className={styles.select}
           defaultValue="-1"
-          onChange={this.handleChange}>
+          onChange={this.handleChange}
+        >
           <option value="-1" disabled>numbers</option>
-          {this
-            .props
-            .data
-            .map(this.renderOption)}
+          {gateOptions}
         </select>
       </div>
     );

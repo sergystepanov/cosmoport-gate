@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react';
 
 import GateSelect from '../components/GateSelect/GateSelect';
@@ -7,15 +6,19 @@ export default class FirstScreenContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      gateNum: -1,
-      gates: this.fetchGates()
-    };
+    this.state = { gateNum: -1, gates: [] };
   }
 
-  componentDidMount() { }
+  componentDidMount() {
+    this.fetchGates();
+  }
 
-  fetchGates = () => Array.from(Array(10).keys())
+  fetchGates = () => {
+    this.props.api
+      .fetchGates()
+      .then(gates_ => this.setState({ gates: gates_ }))
+      .catch(error => console.error(error));
+  }
 
   handleGateSelect = (num) => {
     this.setState({ gateNum: num });

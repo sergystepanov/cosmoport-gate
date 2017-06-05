@@ -1,9 +1,4 @@
-// @flow
 import React, { Component } from 'react';
-
-import Api from '../../lib/core-api-client/ApiV1';
-
-const API = new Api();
 
 export default class Main extends Component {
   constructor(props) {
@@ -13,33 +8,36 @@ export default class Main extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      gates: this.fetchGates()
-    });
+    this.fetchGates();
   }
 
   handleChange = (e) => {
     this.setState({ gate: e.target.value });
-    this
-      .props
-      .router
-      .push(`/app/${e.target.value}`);
+    this.props.router.push(`/app/${e.target.value}`);
   }
 
-  fetchGates = () => Array.from(Array(10).keys())
+  fetchGates = () => {
+    this.props.api
+      .fetchGates()
+      .then(gates_ => this.setState({ gates: gates_ }))
+      .catch(error => console.error(error));
+  }
 
   renderOption = (id) => <option key={id} value={id}>Gate {id}</option>
 
   render() {
+    const gateOptions = this.state.gates.map(gate_ =>
+      <option key={gate_.id} value={gate_.id}>
+        {gate_.id} - {gate_.number} {gate_.gateName}
+      </option>
+    );
+
     return (
       <div>
         <div>Please select the gate number:</div>
         <select value={this.state.gate} onChange={this.handleChange}>
           <option value="-1" disabled>numbers</option>
-          {this
-            .state
-            .gates
-            .map(this.renderOption)}
+          {gateOptions}
         </select>
       </div>
     );
