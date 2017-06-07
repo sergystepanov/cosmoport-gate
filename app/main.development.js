@@ -42,16 +42,69 @@ const installExtensions = async () => {
   }
 };
 
+
+const mmenu = (wWindow, env, x, y) => {
+  const items = [];
+
+  if (env === 'development') {
+    items.push(
+      {
+        label: 'Inspect element',
+        click() { wWindow.inspectElement(x, y); }
+      },
+      {
+        label: '50% zoom',
+        click() { wWindow.webContents.setZoomLevel(-2); }
+      },
+      {
+        label: '100% zoom',
+        click() { wWindow.webContents.setZoomLevel(0); }
+      }
+    );
+  }
+
+  items.push(
+    {
+      label: 'Maximize',
+      click() {
+        mainWindow.setFullScreen(true);
+        mainWindow.maximize();
+      }
+    },
+    {
+      label: 'Unmazimize',
+      click() {
+        mainWindow.setFullScreen(false);
+        mainWindow.unmaximize();
+      }
+    },
+    {
+      label: 'Close',
+      click() { mainWindow.close(); }
+    }
+  );
+
+  return items;
+};
+
 app.on('ready', async () => {
   await installExtensions();
 
-  mainWindow = new BrowserWindow({ show: false, width: 1024, height: 728 });
+  mainWindow = new BrowserWindow({
+    show: false,
+    width: 1024,
+    height: 728,
+    frame: false,
+    webPreferences: {
+      zoomFactor: 1.0
+    }
+  });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.webContents.send('config', config);
-
+    mainWindow.center();
     mainWindow.show();
     mainWindow.focus();
   });
@@ -60,60 +113,16 @@ app.on('ready', async () => {
     mainWindow = null;
   });
 
-  mainWindow
-    .webContents
-    .on('context-menu', (e, props) => {
-      const { x, y } = props;
+  mainWindow.webContents.on('context-menu', (e, props) => {
+    const { x, y } = props;
 
-      Menu.buildFromTemplate([
-        {
-          label: '50% zoom',
-          click() {
-            mainWindow
-              .webContents
-              .setZoomLevel(-2);
-          }
-        }, {
-          label: '100% zoom',
-          click() {
-            mainWindow
-              .webContents
-              .setZoomLevel(0);
-          }
-        }
-      ]).popup(mainWindow);
-    });
+    Menu
+      .buildFromTemplate(mmenu(mainWindow, process.env.NODE_ENV, x, y))
+      .popup(mainWindow);
+  });
 
   if (process.env.NODE_ENV === 'development') {
     mainWindow.openDevTools();
-    mainWindow
-      .webContents
-      .on('context-menu', (e, props) => {
-        const { x, y } = props;
-
-        Menu.buildFromTemplate([
-          {
-            label: 'Inspect element',
-            click() {
-              mainWindow.inspectElement(x, y);
-            }
-          }, {
-            label: '50% zoom',
-            click() {
-              mainWindow
-                .webContents
-                .setZoomLevel(-2);
-            }
-          }, {
-            label: '100% zoom',
-            click() {
-              mainWindow
-                .webContents
-                .setZoomLevel(0);
-            }
-          }
-        ]).popup(mainWindow);
-      });
   }
 
   if (process.platform === 'darwin') {
