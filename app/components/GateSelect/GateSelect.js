@@ -16,9 +16,7 @@ export default class GateSelect extends Component {
   };
 
   handleChange = (e) => {
-    this
-      .props
-      .onGateSelect(e.target.value);
+    this.props.onGateSelect(e.target.value);
   }
 
   render() {
@@ -31,11 +29,7 @@ export default class GateSelect extends Component {
     return (
       <div>
         <div>Please select the gate number:</div>
-        <select
-          className={styles.select}
-          defaultValue="-1"
-          onChange={this.handleChange}
-        >
+        <select className={styles.select} defaultValue="-1" onChange={this.handleChange}>
           <option value="-1" disabled>numbers</option>
           {gateOptions}
         </select>

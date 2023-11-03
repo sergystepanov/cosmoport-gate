@@ -34,12 +34,7 @@ export default class CalendarDate extends Component {
     this.setState({ date: new Date() });
   }
 
-  renderMonthDay() {
-    return this
-      .state
-      .date
-      .getDate();
-  }
+  renderMonthDay = () => this.state.date.getDate()
 
   renderMonthName() {
     return this.props.locale.ui_months_names !== undefined
@@ -47,12 +42,7 @@ export default class CalendarDate extends Component {
       : this.state.date.getMonth();
   }
 
-  renderYear() {
-    return this
-      .state
-      .date
-      .getFullYear();
-  }
+  renderYear = () => this.state.date.getFullYear()
 
   render() {
     return (
@@ -65,7 +55,7 @@ export default class CalendarDate extends Component {
           <div className="date__number">{this.renderMonthName()}</div>
           <div className="date__number">{this.renderYear()}</div>
         </div>
-      </div >
+      </div>
     );
   }
 }

@@ -12,7 +12,7 @@ export default class App extends Component {
       api: null
     };
 
-    // After config recieving we should fetch the data and render markup.
+    // After config receiving we should fetch the data and render markup.
     ipcRenderer.on('config', this.handleConfig);
   }
 

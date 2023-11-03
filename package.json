@@ -64,7 +64,8 @@
         "deb",
         "AppImage"
       ]
-    }
+    },
+    "extraResources": ["config/"]
   },
   "directories": {
     "buildResources": "resources",
