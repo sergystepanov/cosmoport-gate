@@ -1,0 +1,10 @@
+@import "../../assets/resources/v1/styles.css";
+
+/* Style override */
+body {
+  background-image: url(../../assets/resources/v1/assets/img/picture.jpg);
+}
+
+.g-page {
+  min-height: 768px;
+}

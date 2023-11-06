@@ -1,0 +1,14 @@
+
+.select, select option {
+    background-color: black;
+}
+
+.select {
+    width: 100%;
+    height: 3em;
+    margin-top: 1em;
+    font-family: 'Europe', Verdana, Arial, sans-serif;
+    font-size: 3vh;
+    border: 1px solid #00cbfe;
+    color: #00cbfe;
+}
