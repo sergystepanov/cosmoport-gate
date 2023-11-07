@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Api from 'cosmoport-core-api-client/ApiV1';
-import Socket0 from 'cosmoport-core-api-client/WebSocketWrapper';
+import { Api, Websocket } from 'cosmoport-core-api-client';
 import { useParams } from 'react-router-dom';
 import Time from '../components/Time';
 import CalendarDate from '../components/CalendarDate';
@@ -152,7 +151,7 @@ class Main extends Component {
 
   init = (config) => {
     const self = this;
-    const socket0 = new Socket0({
+    const socket0 = new Websocket({
       url: `ws://${config.address.ws}/events?id=gate&id=${Guid.get()}&id=${
         this.props.params.gate_id
       }`,
@@ -285,16 +284,12 @@ class Main extends Component {
   }
 
   renderDuration = (minutes) => {
-    let result = minutes;
-
     const h = Math.trunc(minutes / 60);
     const m = minutes % 60;
 
-    result = `${h} ${this.getLocaleProp(
+    return `${h} ${this.getLocaleProp(
       'ui_caption_hours',
     )} ${m} ${this.getLocaleProp('ui_caption_minutes')}`;
-
-    return result;
   };
 
   renderIcon = (typeId) => (

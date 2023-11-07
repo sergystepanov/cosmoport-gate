@@ -4,7 +4,7 @@ import GateSelect from './containers/GateSelect';
 import MainInfo from './containers/Main';
 
 import './App.css';
-import Api from 'cosmoport-core-api-client/ApiV1';
+import { Api } from 'cosmoport-core-api-client';
 import React, { Component } from 'react';
 
 export class App extends Component {
