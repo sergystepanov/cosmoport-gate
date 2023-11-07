@@ -3,4 +3,9 @@ import { App } from './App';
 
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
-root.render(<App />);
+
+window.electron.ipcRenderer.sendMessage('config');
+
+window.electron.ipcRenderer.once('config', (config) => {
+  root.render(<App conf={config} />);
+});

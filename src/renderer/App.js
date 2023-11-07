@@ -12,20 +12,10 @@ export class App extends Component {
     super(props);
 
     this.state = {
-      config: null,
-      api: null,
+      config: props.conf,
+      api: new Api(`http://${props.conf.address.server}`),
     };
-
-    window.electron.ipcRenderer.once('config', this.handleConfig);
-    window.electron.ipcRenderer.sendMessage('config');
   }
-
-  handleConfig = (data) => {
-    this.setState({
-      config: data,
-      api: new Api(`http://${data.address.server}`),
-    });
-  };
 
   render() {
     if (this.state.config === null) {

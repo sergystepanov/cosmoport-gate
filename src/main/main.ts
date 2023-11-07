@@ -81,7 +81,6 @@ const createWindow = async () => {
     await installExtensions();
   }
 
-
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,
@@ -109,13 +108,6 @@ const createWindow = async () => {
 
   mainWindow.on('closed', () => {
     mainWindow = null;
-  });
-
-  mainWindow.webContents.on('did-finish-load', () => {
-    if (!mainWindow) {
-      throw new Error('"mainWindow" is not defined');
-    }
-    // mainWindow.webContents.send('config', config);
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);
