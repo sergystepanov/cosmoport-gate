@@ -59,9 +59,11 @@ export default class TableRow extends Component {
     let result = val;
 
     for (const type of values.types) {
-      if (val === type.id) {
-        result = `${this.getLocaleProp(type.i18nEventTypeName, true)}:`;
-        break;
+      for (const cat of values.type_categories) {
+        if (cat.id === type.categoryId) {
+          result = `${this.getLocaleProp(cat.i18nEventTypeCategoryName, true)}:`;
+          break;
+        }
       }
     }
 
@@ -73,7 +75,7 @@ export default class TableRow extends Component {
 
     for (const type of values.types) {
       if (val === type.id) {
-        result = `${this.getLocaleProp(type.i18nEventTypeSubname, true)}`;
+        result = `${this.getLocaleProp(type.i18nEventTypeName, true)}`;
         break;
       }
     }

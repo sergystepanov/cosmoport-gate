@@ -250,7 +250,7 @@ table{border-collapse:collapse;border-spacing:0}
 	    -ms-flex-align:stretch;
 	        align-items:stretch;margin-top:30px;}
 .flight__description .trapeze{height:auto;}
-.flight__description-body{padding:30px;font-size:32px;line-height:34px;background-color:rgba(0,0,0,.2);box-shadow:0 2px 0 0 #0cf,0 -2px 0 0 #0cf;}
+.flight__description-body{flex:1;text-align:center;padding:30px;font-size:32px;line-height:34px;background-color:rgba(0,0,0,.2);box-shadow:0 2px 0 0 #0cf,0 -2px 0 0 #0cf;}
 .flight__title{margin-left:20px;margin-top:30px;font-size:36px;}
 .flight__next{margin-top:20px;}
 .flight-title{

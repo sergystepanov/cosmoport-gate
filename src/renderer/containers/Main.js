@@ -300,9 +300,10 @@ class Main extends Component {
 
   renderTypeTitle(val, values) {
     const typeName = values.types.find((name) => name.id === val);
+    const cat = values.type_categories.find(c => c.id === typeName.categoryId);
 
     return typeName
-      ? `${this.getLocaleProp(typeName.i18nEventTypeName, true)}:`
+      ? `${this.getLocaleProp(cat.i18nEventTypeCategoryName, true)}:`
       : val;
   }
 
@@ -310,7 +311,7 @@ class Main extends Component {
     const subName = values.types.find((name) => name.id === val);
 
     return subName
-      ? `${this.getLocaleProp(subName.i18nEventTypeSubname, true)}`
+      ? `${this.getLocaleProp(subName.i18nEventTypeName, true)}`
       : val;
   }
 
